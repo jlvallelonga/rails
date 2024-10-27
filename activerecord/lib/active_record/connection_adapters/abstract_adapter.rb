@@ -320,6 +320,9 @@ module ActiveRecord
           @idle_since = Process.clock_gettime(Process::CLOCK_MONOTONIC)
           @owner = nil
         else
+          # print stack trace
+          puts "stack trace:"
+          puts caller.join("\n")
           raise ActiveRecordError, "Cannot expire connection, it is not currently leased."
         end
       end
